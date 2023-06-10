@@ -1,3 +1,4 @@
 import useGetFood from "./useGetFood";
+import useSetFood from "./useSetFood";
 
-export { useGetFood };
+export { useGetFood, useSetFood };

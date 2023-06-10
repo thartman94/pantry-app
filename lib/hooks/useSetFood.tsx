@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { FoodItem } from "../types";
 
-const useGetFood = () => {
+const useSetFood = () => {
   const [data, setData] = useState<Array<FoodItem>>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -38,4 +38,4 @@ const useGetFood = () => {
   return { data, error, loading };
 };
 
-export default useGetFood;
+export default useSetFood;

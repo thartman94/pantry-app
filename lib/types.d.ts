@@ -1,4 +1,5 @@
-export type FoodItem = {
+export interface FoodItem {
+  [key: string]: any;
   id: string;
   name: string;
   brand: string;
@@ -9,4 +10,4 @@ export type FoodItem = {
   carbs: number;
   fat: number;
   exp_date: string;
-};
+}
