@@ -1,10 +1,13 @@
 "use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import EmotionProvider from "./components/Providers/emotion";
 import { AppShell } from "@mantine/core";
 
-import Navigation from "./components/Navigation";
+import EmotionProvider from "./components/Providers/emotion";
+import { ContextProvider } from "./components/Providers/siteContext";
+
+import Navigation from "./components/layout/Navigation";
+import Header from "./components/layout/Header";
 import App from "next/app";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <EmotionProvider>
-          <AppShell navbar={<Navigation />}>{children}</AppShell>
+          <ContextProvider>
+            <AppShell navbar={<Navigation />} header={<Header />}>
+              {children}
+            </AppShell>
+          </ContextProvider>
         </EmotionProvider>
       </body>
     </html>

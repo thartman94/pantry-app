@@ -12,7 +12,7 @@ import {
 import {
   IconHome2,
   IconLogout,
-  IconSwitchHorizontal,
+  IconDatabaseCog,
   IconBuildingWarehouse,
 } from "@tabler/icons-react";
 
@@ -79,31 +79,34 @@ function NavbarLink({
   );
 }
 
-const navigationLinks = [
+const navigationLinksTop = [
   { icon: IconHome2, label: "Home", href: "/" },
   { icon: IconBuildingWarehouse, label: "Food Storage", href: "/food-storage" },
 ];
 
-export default function NavbarMinimal() {
-  const path = usePathname();
-  const links = navigationLinks.map((link, i) => (
+const navigationLinksBottom = [
+  { icon: IconDatabaseCog, label: "Developer Zone", href: "/dev-tools" },
+  { icon: IconLogout, label: "Logout" },
+];
+
+const links = (link: any[], path: string) =>
+  link.map((link, i) => (
     <NavbarLink {...link} key={i} active={link.href === path} />
   ));
 
+export default function NavbarMinimal() {
+  const path = usePathname();
+
   return (
-    <Navbar height="100%" width={{ base: 80 }} p="md">
-      <Center>
-        <span>logo</span>
-      </Center>
-      <Navbar.Section grow mt={50}>
+    <Navbar width={{ base: 80 }} p="md">
+      <Navbar.Section grow>
         <Stack justify="center" spacing={0}>
-          {links}
+          {links(navigationLinksTop, path)}
         </Stack>
       </Navbar.Section>
       <Navbar.Section>
         <Stack justify="center" spacing={0}>
-          <NavbarLink icon={IconSwitchHorizontal} label="Change account" />
-          <NavbarLink icon={IconLogout} label="Logout" />
+          {links(navigationLinksBottom, path)}
         </Stack>
       </Navbar.Section>
     </Navbar>

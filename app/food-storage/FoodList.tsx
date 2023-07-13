@@ -19,8 +19,7 @@ import {
   IconSearch,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
-import FoodItemForm from "./FoodItemForm";
-import { keys } from "@mantine/utils";
+import Form from "./FoodItemForm";
 const useStyles = createStyles((theme) => ({
   th: {
     padding: "0 !important",
@@ -129,7 +128,9 @@ export default function FoodList({ data }: { data: FoodItem[] }) {
   ] as (keyof FoodItem)[];
   const [search, setSearch] = useState("");
   const [sortedData, setSortedData] = useState(data);
-  const [selectedItem, setSelectedItem] = useState<FoodItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<FoodItem | undefined>(
+    undefined
+  );
   const [sortBy, setSortBy] = useState<keyof FoodItem | null>(null);
   const [reverseSortDirection, setReverseSortDirection] =
     useState<boolean>(false);
@@ -163,10 +164,6 @@ export default function FoodList({ data }: { data: FoodItem[] }) {
     openModal();
   };
 
-  const closeItem = () => {
-    closeModal();
-  };
-
   const rows = sortedData.map((item: FoodItem, i) => (
     <tr key={i} onClick={() => openItem(item)}>
       {keys.map((key: keyof FoodItem, j) => (
@@ -177,9 +174,9 @@ export default function FoodList({ data }: { data: FoodItem[] }) {
 
   return (
     <>
-      <FoodItemForm
+      <Form
         opened={modalOpened}
-        close={closeItem}
+        close={() => closeModal()}
         item={selectedItem}
       />
       <ScrollArea>

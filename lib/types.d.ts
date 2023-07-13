@@ -1,10 +1,10 @@
 export interface FoodItem {
   [key: string]: any;
-  id: string;
+  id?: string;
   name: string;
   brand: string;
   size: number;
-  serving_size: string;
+  serving_size: number;
   calories: number;
   protein: number;
   carbs: number;
